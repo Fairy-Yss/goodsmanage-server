@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lqcool.dao.account.AccountDao">
+
+    <resultMap type="com.lqcool.model.account.Account" id="entityList">
+        <result column="eid" property="eid" javaType="java.lang.String"></result>
+        <result column="createDate" property="createDate" javaType="java.util.Date"></result>
+        <result column="updateDate" property="updateDate" javaType="java.util.Date"></result>
+        <result column="mark" property="mark" javaType="java.lang.String"></result>
+        <result column="accountNo" property="accountNo" javaType="java.lang.String"></result>
+        <result column="password" property="password" javaType="java.lang.String"></result>
+        <result column="nickName" property="nickName" javaType="java.lang.String"></result>
+        <result column="roleName" property="roleName" javaType="java.lang.String"></result>
+    </resultMap>
+
+    <select id="getAllAccount" resultMap="entityList">
+        SELECT * FROM account
+    </select>
+
+    <insert id="addAccount" parameterType="com.lqcool.model.account.Account">
+      insert into account (eid, createDate, updateDate, mark, accountNo, password, nickName, roleName)
+      values (#{eid}, #{createDate}, #{updateDate}, #{mark}, #{accountNo}, #{password}, #{nickName}, #{roleName})
+    </insert>
+
+    <select id="getAccountByAccountNo" resultType="com.lqcool.model.account.Account" parameterType="java.lang.String">
+        SELECT * FROM account WHERE account.accountNo = #{accountNo}
+    </select>
+</mapper>
